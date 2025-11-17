@@ -1,0 +1,10 @@
+# Netlify Redirects File
+# https://docs.netlify.com/routing/redirects/
+
+# Redirect home variations to root
+/home              /                301
+/home.html         /                301
+
+# Handle 404 errors
+/*                 /index.html      404
+

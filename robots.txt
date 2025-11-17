@@ -1,0 +1,11 @@
+# robots.txt for Dani Car Interior Detailing
+
+User-agent: *
+Allow: /
+
+# Disallow placeholder generator (not for public indexing)
+Disallow: /images/placeholder-generator.html
+
+# Sitemap location (update with your actual domain)
+# Sitemap: https://your-domain.netlify.app/sitemap.xml
+

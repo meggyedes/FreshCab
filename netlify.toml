@@ -1,0 +1,83 @@
+# Netlify Configuration File
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Directory to publish (root directory for static sites)
+  publish = "."
+  
+  # Build command (not needed for static HTML sites)
+  command = ""
+
+# Redirect rules
+[[redirects]]
+  # Redirect /home to /
+  from = "/home"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  # Redirect /home.html to /
+  from = "/home.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  # Handle 404 errors - redirect to home page
+  from = "/*"
+  to = "/index.html"
+  status = 404
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Cache control for HTML files (don't cache)
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    # Cache CSS files for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    # Cache JavaScript files for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    # Cache images for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Form handling (for contact form if using Netlify Forms)
+# Uncomment if you want to use Netlify's form handling
+# [[plugins]]
+#   package = "@netlify/plugin-forms"
+
+# Performance optimizations
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
