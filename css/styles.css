@@ -267,15 +267,69 @@ button {
 /* ===================================
    Hero Section
    =================================== */
-.hero {
+.hero-index {
     position: relative;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    background-image: url('../images/hero-index.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     padding: var(--spacing-2xl) 0;
     min-height: 500px;
     display: flex;
     align-items: center;
     overflow: hidden;
+}
+.hero-pricing {
+    position: relative;
+    background-image: url('../images/hero-pricing.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: var(--spacing-2xl) 0;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-gallery {
+    position: relative;
+    background-image: url('../images/hero-gallery.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: var(--spacing-2xl) 0;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-contact {
+    position: relative;
+    background-image: url('../images/hero-contact.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: var(--spacing-2xl) 0;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
 }
 
 .hero::before {
@@ -287,6 +341,7 @@ button {
     bottom: 0;
     background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
     opacity: 0.3;
+    z-index: 0;
 }
 
 .hero-content {
@@ -625,10 +680,15 @@ button {
    Page Header
    =================================== */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: white;
     padding: var(--spacing-xl) 0;
     text-align: center;
+    position: relative;
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 1;
 }
 
 .page-title {
