@@ -95,15 +95,19 @@ class Lightbox {
             this.currentImages = [imgElement];
             this.currentIndex = 0;
         }
-        
+
         this.showImage(this.currentIndex);
         this.lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        // Prevent both vertical and horizontal scrolling using class
+        document.documentElement.classList.add('lightbox-active');
+        document.body.classList.add('lightbox-active');
     }
     
     closeLightbox() {
         this.lightbox.classList.remove('active');
-        document.body.style.overflow = '';
+        // Restore scrolling by removing the class
+        document.documentElement.classList.remove('lightbox-active');
+        document.body.classList.remove('lightbox-active');
     }
     
     showImage(index) {
