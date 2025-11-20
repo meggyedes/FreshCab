@@ -829,12 +829,16 @@ button {
     background-color: var(--bg-white);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
+    /* Enable smooth scrolling on mobile */
+    -webkit-overflow-scrolling: touch;
 }
 
 .addons-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
+    /* Minimum width to prevent extreme squishing on very small screens */
+    min-width: 600px;
 }
 
 .addons-table thead {
@@ -986,87 +990,200 @@ button {
     border-radius: 6px;
 }
 
-/* Mobile Responsive - Stacked Layout */
+/* Mobile Responsive - Compact Table with Horizontal Scroll */
 @media (max-width: 768px) {
     .addons-table-wrapper {
-        box-shadow: none;
-        background-color: transparent;
-    }
-
-    .addons-table thead {
-        display: none;
-    }
-
-    .addons-table,
-    .addons-table tbody,
-    .addons-table tr,
-    .addons-table td {
-        display: block;
-        width: 100%;
-    }
-
-    .addons-table tbody tr {
-        margin-bottom: var(--spacing-lg);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         background-color: var(--bg-white);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-md);
-        border: none;
-        padding: var(--spacing-md);
+        margin-top: var(--spacing-md);
+        /* Add scroll indicator shadow */
+        background:
+            linear-gradient(90deg, var(--bg-white) 30%, rgba(255,255,255,0)),
+            linear-gradient(90deg, rgba(255,255,255,0), var(--bg-white) 70%) 100% 0,
+            radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,.15), rgba(0,0,0,0)),
+            radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.15), rgba(0,0,0,0)) 100% 0;
+        background-repeat: no-repeat;
+        background-color: var(--bg-white);
+        background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+        background-attachment: local, local, scroll, scroll;
     }
 
-    .addons-table tbody tr:hover {
-        background-color: var(--bg-white);
+    .addons-table {
+        /* Compact but readable width */
+        min-width: 650px;
+        font-size: 0.85rem;
+    }
+
+    /* Compact header styling */
+    .addons-table thead th {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.7rem;
+        position: sticky;
+        top: 0;
+        background-color: var(--primary-color);
+        z-index: 10;
+    }
+
+    .addons-table thead th.col-icon {
+        width: 50px;
+        padding: 0.75rem 0.25rem;
+    }
+
+    .addons-table thead th.col-service {
+        width: 32%;
+    }
+
+    .addons-table thead th.col-description {
+        width: 35%;
+    }
+
+    .addons-table thead th.col-price {
+        width: 15%;
+        text-align: center;
+    }
+
+    /* Compact row styling */
+    .addons-table tbody tr {
+        border-bottom: 1px solid #e5e7eb;
     }
 
     .addons-table tbody td {
-        padding: 0.5rem 0;
-        border: none;
-        text-align: left;
+        padding: 0.85rem 0.5rem;
+        vertical-align: top;
     }
 
-    .addons-table tbody td::before {
-        content: attr(data-label);
-        font-weight: 600;
-        color: var(--text-dark);
-        display: block;
-        margin-bottom: 0.25rem;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-
-    .addon-icon {
-        font-size: 2.5rem;
+    /* Price column - center aligned vertically and horizontally */
+    .addons-table tbody td.addon-price {
+        vertical-align: middle;
         text-align: center;
-        padding: var(--spacing-md) 0;
     }
 
-    .addon-icon::before {
-        display: none;
+    /* Icon - smaller on mobile */
+    .addon-icon {
+        font-size: 1.5rem;
+        padding: 0;
+        vertical-align: middle;
     }
 
-    .addon-service {
-        padding-top: var(--spacing-sm);
+    /* Service column - center aligned vertically */
+    .addons-table tbody td.addon-service {
+        vertical-align: middle;
     }
 
+    /* Service name - compact */
     .addon-service strong {
-        font-size: 1.125rem;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Badge - smaller */
+    .addon-badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+        margin-top: 0.25rem;
+        display: block;
+        width: fit-content;
+    }
+
+    /* Description - compact and readable */
+    .addon-description {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    /* Price - prominent but compact, centered */
+    .addon-price {
+        font-size: 1rem;
+        white-space: nowrap;
+        text-align: center !important;
+    }
+
+    /* Labels for locked/unavailable */
+    .addon-locked-label,
+    .addon-unavailable-label {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* Scroll hint for mobile users */
+    .addons-table-wrapper::before {
+        content: '👉 Görgess jobbra a teljes táblázatért';
+        display: block;
+        text-align: center;
+        background-color: rgba(37, 99, 235, 0.1);
+        color: var(--primary-color);
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+        margin: -0.5rem -0.5rem 0.5rem -0.5rem;
+        animation: fadeInOut 4s ease-in-out;
+        animation-delay: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeInOut {
+        0% { opacity: 0; }
+        10%, 70% { opacity: 1; }
+        100% { opacity: 0; display: none; }
+    }
+}
+
+/* Tablet Responsive - Horizontal Scroll with Better Spacing */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .addons-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+    }
+
+    /* Scroll hint for tablet users */
+    .addons-table-wrapper::after {
+        content: '← Scroll to see more →';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(37, 99, 235, 0.9);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+        font-size: 0.75rem;
+        font-weight: 600;
+        pointer-events: none;
+        opacity: 0;
+        animation: fadeInOut 3s ease-in-out;
+        animation-delay: 1s;
+    }
+
+    @keyframes fadeInOut {
+        0%, 100% { opacity: 0; }
+        10%, 90% { opacity: 1; }
+    }
+
+    .addons-table {
+        min-width: 700px;
+    }
+
+    .addons-table thead th,
+    .addons-table tbody td {
+        padding: 1rem 0.75rem;
+    }
+
+    .addons-table thead th.col-service {
+        width: 30%;
+    }
+
+    .addons-table thead th.col-description {
+        width: 45%;
     }
 
     .addon-description {
-        font-size: 0.95rem;
-        padding-bottom: var(--spacing-sm);
-    }
-
-    .addon-price {
-        text-align: left;
-        font-size: 1.5rem;
-        padding-top: var(--spacing-sm);
-    }
-
-    .addon-badge {
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
     }
 }
 
@@ -1939,14 +2056,34 @@ button {
         height: 400px;
     }
 
+    /* Pricing Grid - Better layout for tablet */
     .pricing-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-md);
     }
 
-    .pricing-card:nth-child(2) {
-        grid-column: 1 / -1;
-        max-width: 400px;
-        margin: 0 auto;
+    .pricing-card {
+        padding: var(--spacing-lg);
+    }
+
+    .pricing-card-featured {
+        transform: scale(1);
+    }
+
+    .pricing-card-featured:hover {
+        transform: translateY(-8px);
+    }
+
+    .pricing-title {
+        font-size: 1.5rem;
+    }
+
+    .price-amount {
+        font-size: 2.5rem;
+    }
+
+    .pricing-features {
+        font-size: 0.9rem;
     }
 }
 
