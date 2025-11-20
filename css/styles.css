@@ -821,139 +821,253 @@ button {
 }
 
 /* ===================================
-   Add-ons Section
+   Add-ons Section - Table Layout
    =================================== */
-.addons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
+.addons-table-wrapper {
     margin-top: var(--spacing-xl);
-}
-
-.addon-card {
+    overflow-x: auto;
     background-color: var(--bg-white);
-    padding: var(--spacing-lg);
-    padding-bottom: 4.5rem;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
+}
+
+.addons-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.addons-table thead {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.addons-table thead th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.addons-table thead th.col-icon {
+    width: 60px;
     text-align: center;
-    transition: all var(--transition-base);
-    position: relative;
-    min-height: 280px;
+}
+
+.addons-table thead th.col-service {
+    width: 25%;
+}
+
+.addons-table thead th.col-description {
+    width: 50%;
+}
+
+.addons-table thead th.col-price {
+    width: 15%;
+    text-align: right;
+}
+
+.addons-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color var(--transition-base);
+}
+
+.addons-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.addons-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.addons-table tbody td {
+    padding: 1.25rem 1rem;
+    vertical-align: top;
+}
+
+.addon-icon {
+    font-size: 2rem;
+    text-align: center;
+    display: block;
+}
+
+.addon-service {
+    color: var(--text-dark);
+}
+
+.addon-service strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
 }
 
 .addon-badge {
-    position: absolute;
-    top: var(--spacing-sm);
-    right: var(--spacing-sm);
+    display: inline-block;
+    margin-top: 0.5rem;
     padding: 0.25rem 0.75rem;
     border-radius: 999px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.03em;
     background-color: rgba(15, 23, 42, 0.03);
     color: var(--text-dark);
     border: 1px solid rgba(15, 23, 42, 0.08);
-    pointer-events: none;
-    z-index: 1;
 }
 
 .addon-badge--winter,
 .addon-badge--climate {
     color: var(--primary-dark);
+    background-color: rgba(37, 99, 235, 0.05);
     border-color: rgba(37, 99, 235, 0.18);
 }
 
 .addon-badge--smoker {
     color: var(--accent-color);
+    background-color: rgba(245, 158, 11, 0.05);
     border-color: rgba(245, 158, 11, 0.3);
-}
-
-.addon-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-}
-
-.addon-icon {
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.addon-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: var(--spacing-sm);
 }
 
 .addon-description {
     color: var(--text-light);
-    margin-bottom: var(--spacing-md);
     line-height: 1.6;
+    font-size: 0.9rem;
 }
 
 .addon-price {
-    position: absolute;
-    bottom: var(--spacing-lg);
-    left: 0;
-    right: 0;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--primary-color);
-    text-align: center;
+    text-align: right;
+    white-space: nowrap;
 }
 
-/* Locked Add-on Card (Only in Premium Package) */
-.addon-card-locked {
-  opacity: 0.7;
-  cursor: not-allowed;
-  position: relative;
-  pointer-events: none; /* disable click */
-  background: #f9fafb;
-  border: 1px dashed #cbd5e1;
+/* Locked Row (Premium Only) */
+.addon-row-locked {
+    background-color: #f9fafb;
+    opacity: 0.75;
 }
 
-.addon-card-locked .addon-title,
-.addon-card-locked .addon-description {
-  color: #6b7280 !important;
+.addon-row-locked .addon-service,
+.addon-row-locked .addon-description {
+    color: #6b7280 !important;
 }
 
 .addon-locked-label {
-  display: inline-block;
-  margin-top: 0.8rem;
-  padding: 0.35rem 0.75rem;
-  background: #e5e7eb;
-  color: #374151;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border-radius: 8px;
-  text-align: center;
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    background: #e5e7eb;
+    color: #374151;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
 }
 
-/* Disabled Add-on Card */
-.addon-card-disabled {
-  opacity: 0.45;
-  filter: grayscale(100%);
-  cursor: not-allowed;
-  position: relative;
-  pointer-events: none; /* teljesen deaktiválja */
+/* Disabled Row */
+.addon-row-disabled {
+    opacity: 0.5;
+    filter: grayscale(100%);
 }
 
-.addon-card-disabled .addon-title,
-.addon-card-disabled .addon-description {
-  color: #6b7280 !important;
+.addon-row-disabled .addon-service,
+.addon-row-disabled .addon-description {
+    color: #9ca3af !important;
 }
 
 .addon-unavailable-label {
-  display: inline-block;
-  margin-top: 0.8rem;
-  padding: 0.35rem 0.75rem;
-  background: #d1d5db;
-  color: #374151;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border-radius: 8px;
-  text-align: center;
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    background: #d1d5db;
+    color: #374151;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+/* Mobile Responsive - Stacked Layout */
+@media (max-width: 768px) {
+    .addons-table-wrapper {
+        box-shadow: none;
+        background-color: transparent;
+    }
+
+    .addons-table thead {
+        display: none;
+    }
+
+    .addons-table,
+    .addons-table tbody,
+    .addons-table tr,
+    .addons-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .addons-table tbody tr {
+        margin-bottom: var(--spacing-lg);
+        background-color: var(--bg-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        border: none;
+        padding: var(--spacing-md);
+    }
+
+    .addons-table tbody tr:hover {
+        background-color: var(--bg-white);
+    }
+
+    .addons-table tbody td {
+        padding: 0.5rem 0;
+        border: none;
+        text-align: left;
+    }
+
+    .addons-table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--text-dark);
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .addon-icon {
+        font-size: 2.5rem;
+        text-align: center;
+        padding: var(--spacing-md) 0;
+    }
+
+    .addon-icon::before {
+        display: none;
+    }
+
+    .addon-service {
+        padding-top: var(--spacing-sm);
+    }
+
+    .addon-service strong {
+        font-size: 1.125rem;
+    }
+
+    .addon-description {
+        font-size: 0.95rem;
+        padding-bottom: var(--spacing-sm);
+    }
+
+    .addon-price {
+        text-align: left;
+        font-size: 1.5rem;
+        padding-top: var(--spacing-sm);
+    }
+
+    .addon-badge {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
 }
 
 
@@ -1699,11 +1813,7 @@ button {
     .pricing-card-featured:hover {
         transform: translateY(-8px);
     }
-    
-    .addons-grid {
-        grid-template-columns: 1fr;
-    }
-    
+
     .gallery-grid {
         grid-template-columns: 1fr;
     }
