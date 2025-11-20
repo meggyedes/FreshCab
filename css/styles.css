@@ -269,7 +269,7 @@ button {
    =================================== */
 .hero-index {
     position: relative;
-    background-image: url('../images/hero-index.jpg');
+    background-image: url('../images/hero/hero-index.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -282,7 +282,7 @@ button {
 }
 .hero-pricing {
     position: relative;
-    background-image: url('../images/hero-pricing.jpg');
+    background-image: url('../images/hero/hero-pricing.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -296,7 +296,7 @@ button {
 
 .hero-gallery {
     position: relative;
-    background-image: url('../images/hero-gallery.jpg');
+    background-image: url('../images/hero/hero-gallery.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -310,7 +310,7 @@ button {
 
 .hero-contact {
     position: relative;
-    background-image: url('../images/hero-contact.jpg');
+    background-image: url('../images/hero/hero-contact.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
