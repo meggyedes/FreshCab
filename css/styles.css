@@ -1273,21 +1273,6 @@ button {
     transform: scale(1.3);
 }
 
-/* Touch/Swipe Indicator */
-.carousel-container::after {
-    content: '← Swipe →';
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-md);
-    font-size: 0.875rem;
-    opacity: 0;
-    animation: swipeHint 3s ease-in-out 1s;
-    pointer-events: none;
-}
 
 @keyframes swipeHint {
     0%, 100% { opacity: 0; }
