@@ -134,6 +134,16 @@ galleryImages.forEach(img => {
     img.addEventListener('load', () => {
         img.parentElement.classList.add('loaded');
     });
+
+    // Keep the first visible gallery image eager while leaving the remaining
+    // carousel images lazy-loaded.
+    document.querySelectorAll('.carousel').forEach(carousel => {
+        const firstImage = carousel.querySelector('.carousel-slide.active img');
+        if (firstImage) {
+            firstImage.loading = 'eager';
+            firstImage.fetchPriority = 'high';
+        }
+    });
     
     // Handle error
     img.addEventListener('error', () => {
@@ -192,9 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        // Uncomment to enable service worker
-        // navigator.serviceWorker.register('/sw.js')
-        //     .then(registration => console.log('SW registered'))
-        //     .catch(err => console.log('SW registration failed'));
+        navigator.serviceWorker.register('./sw.js')
+            .then(registration => registration.update())
+            .catch(err => console.warn('FreshCab asset cache unavailable:', err));
     });
 }

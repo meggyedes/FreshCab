@@ -201,6 +201,40 @@ button {
     transition: box-shadow var(--transition-base);
 }
 
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 1rem;
+}
+
+.language-switcher button {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: transparent;
+    color: inherit;
+    border-radius: 999px;
+    padding: 0.35rem 0.55rem;
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.language-switcher button.active,
+.language-switcher button:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .language-switcher {
+        margin: 1rem 0 0;
+        justify-content: center;
+    }
+}
+
 .navbar.scrolled {
     box-shadow: var(--shadow-md);
 }
@@ -269,7 +303,8 @@ button {
    =================================== */
 .hero-index {
     position: relative;
-    background-image: url('../images/hero/hero-index.jpg');
+    background-color: #111827;
+    background-image: url('../images/hero/hero-index.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -282,7 +317,8 @@ button {
 }
 .hero-pricing {
     position: relative;
-    background-image: url('../images/hero/hero-pricing.jpg');
+    background-color: #111827;
+    background-image: url('../images/hero/hero-pricing.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -296,7 +332,8 @@ button {
 
 .hero-gallery {
     position: relative;
-    background-image: url('../images/hero/hero-gallery.jpg');
+    background-color: #111827;
+    background-image: url('../images/hero/hero-gallery.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -310,7 +347,8 @@ button {
 
 .hero-contact {
     position: relative;
-    background-image: url('../images/hero/hero-contact.jpg');
+    background-color: #111827;
+    background-image: url('../images/hero/hero-contact.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -466,8 +504,31 @@ button {
 }
 
 .step-icon {
-    font-size: 3rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
     margin-bottom: var(--spacing-md);
+}
+
+.ui-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: inline-block;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+    vertical-align: middle;
+}
+
+.step-icon .ui-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    stroke-width: 1.5;
 }
 
 .step-title {
@@ -892,9 +953,17 @@ button {
 }
 
 .addon-icon {
-    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    color: var(--primary-color);
     text-align: center;
-    display: block;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.addon-icon .ui-icon {
+    width: 2rem;
+    height: 2rem;
 }
 
 .addon-service {
@@ -1656,8 +1725,24 @@ button {
 }
 
 .contact-icon {
-    font-size: 2rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
     flex-shrink: 0;
+}
+
+.contact-icon .ui-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.footer-contact .ui-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.35rem;
 }
 
 .contact-details h3 {
